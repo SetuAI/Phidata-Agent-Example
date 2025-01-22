@@ -1,5 +1,3 @@
-# for UI purposes
-
 from phi.agent import Agent
 from phi.model.groq import Groq
 from phi.tools.duckduckgo import DuckDuckGo
@@ -41,8 +39,19 @@ finance_agent = Agent(
 )
 #finance_agent.print_response("Give us the most recent stock price and your anaysis on the NVDA stock. Also which one should I  buy ? NVDA or TSLA ? ", stream=True)
 
-app = Playground(agents=[finance_agent, web_search_agent]).get_app()
+#app = Playground(agents=[finance_agent, web_search_agent]).get_app()
 
-if __name__ == "__main__":
-    
-    serve_playground_app("playground:app", reload=True)
+#if __name__ == "__main__":
+    #serve_playground_app("playground:app", reload=True)
+
+
+agent_team = Agent(
+    team=[web_search_agent, finance_agent],
+    model = Groq(id="llama-3.3-70b-versatile"),
+    instructions=["Always include sources", "Use tables to display data"],
+    show_tool_calls=True,
+    markdown=True,
+    debug_mode =True
+)
+
+agent_team.print_response("Summarize analyst recommendations and share the latest news and stock price for last 10 trading days for NVDA", stream=True)
