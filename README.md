@@ -2,8 +2,8 @@
 repo contains an example of an AI Agent built using Phidata Framework
 
 we are using 
-GROQ API KEY
-PHI API KEY
+GROQ API KEY and 
+PHI API KEY and
 GOOGLE API KEY 
 
 repo contains an example of an AI Agent built using Phidata Framework
